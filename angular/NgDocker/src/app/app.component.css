@@ -1,0 +1,16 @@
+.addPerson {
+    width:40%;
+    margin-right:2%;
+    float: left;
+}
+
+.fetchPerson {
+    width:42%;
+    float: left;
+}
+
+.clearFix {
+    clear: both;
+}
+
+
