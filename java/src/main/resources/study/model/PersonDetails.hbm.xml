@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="study.model.PersonDetails" table="PersonDetails">
+
+		<meta attribute="class-description">
+			This class contains the Person details.
+		</meta>
+
+		<id name="name" type="java.lang.String" column="first_name">
+			<!-- <generator class="native"/> -->
+		</id>
+
+		<property name="surname" column="last_name"
+			type="java.lang.String" />
+		<property name="mobileNo" column="telephone"
+			type="java.lang.String" length="10" />
+
+	</class>
+</hibernate-mapping>
