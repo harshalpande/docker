@@ -30,9 +30,14 @@ public class TransactionResource {
 	
 	@POST
 	public Response addPerson(String personInJson) {
-		PersonDetails person = jsonUtility.toObject(personInJson);
-		crud.createUpdatePerson(person);
-		return Response.status(Status.CREATED).entity(person.getName() + " Added!!!").build();
+		PersonDetails person = null;
+		try {
+			person = jsonUtility.toObject(personInJson);
+			crud.createUpdatePerson(person);
+			return Response.status(Status.CREATED).entity(person.getName() + " Added!!!").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
 	}
 	
 	@DELETE

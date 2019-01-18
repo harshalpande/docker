@@ -1,4 +1,8 @@
-<p>
-  add-person works!
-</p>
-
+<div>
+  <p>Name :      <input type="text" class="txtName" [(ngModel)]="fName"></p> 
+  <p>Surname :   <input type="text" class="txtSurname" [(ngModel)]="lName"></p>
+  <p>Mobile No : <input type="text" class="txtMobile" [(ngModel)]="telephone"></p>
+  <button type="submit" (click)="onButtonClick()">SAVE</button><br/>
+  <label>{{status}}</label>
+</div>
+{{fName}}  {{lName}} {{telephone}}

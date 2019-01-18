@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseURI } from '../ApplicationConst';
 
 @Component({
   selector: 'fetch-person',
@@ -9,19 +10,20 @@ import { Observable } from 'rxjs';
 })
 export class FetchPersonComponent implements OnInit {
 
-  baseUri : String = "http://localhost:8080/Docker/webapi/";
-
-  obs : Observable<String>;
   respInJSON : any;
 
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
-     let obs = this.http.get(this.baseUri + "persons");
-     obs.subscribe((response) => {
-       console.log(response);
-       this.respInJSON = response;
-     });
+     let obs = this.http.get(baseURI + "persons");
+     obs.subscribe(
+       data => {
+        this.respInJSON = data;
+       }, 
+       error => {
+        this.respInJSON = error;
+       }
+     );
   }
 
 }
