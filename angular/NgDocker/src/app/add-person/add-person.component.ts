@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 
 export interface Person {
-  firstName: String;
-  lastName: String;
-  mobileNumber: String;
+  name: String;
+  surname: String;
+  mobileNo: String;
 }
 
 @Component({
@@ -33,9 +33,9 @@ export class AddPersonComponent implements OnInit {
   onButtonClick() {
 
     this.user = {
-      firstName: this.fName,
-      lastName: this.lName,
-      mobileNumber: this.telephone
+      name: this.fName,
+      surname: this.lName,
+      mobileNo: this.telephone
     };
 
     let obs = this.httpclient.post(baseURI.toString() + "persons", this.user, { responseType: 'text' });

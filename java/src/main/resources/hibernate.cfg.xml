@@ -8,7 +8,7 @@
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
 		<!-- Driver URL and Path -->
-		<property name="hibernate.connection.url">jdbc:postgresql://10.83.8.111:5432/Docker</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Docker</property>
 
 		<property name="connection.username">postgres</property>
 
@@ -29,7 +29,7 @@
 		<!-- Prints SQL Queries to Console TRUE/FALSE -->
 		<property name="show_sql">true</property>
 
-		<!-- Value create : creates everytime new Schema, update : updates to same 
+		<!-- Value: create : creates everytime new Schema, update : updates to same 
 			table and schema present if not creates a new one -->
 		<property name="hbm2ddl.auto">update</property>
 

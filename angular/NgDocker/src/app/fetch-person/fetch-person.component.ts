@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { baseURI } from '../ApplicationConst';
 
 @Component({
@@ -15,7 +14,11 @@ export class FetchPersonComponent implements OnInit {
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
-     let obs = this.http.get(baseURI + "persons");
+     this.fetchList();
+  }
+
+  fetchList() {
+    let obs = this.http.get(baseURI + "persons");
      obs.subscribe(
        data => {
         this.respInJSON = data;
