@@ -1,8 +1,26 @@
 <div>
-  <p>Name :      <input type="text" class="txtName" [(ngModel)]="fName"></p> 
-  <p>Surname :   <input type="text" class="txtSurname" [(ngModel)]="lName"></p>
-  <p>Mobile No : <input type="text" class="txtMobile" [(ngModel)]="telephone"></p>
-  <button type="submit" (click)="onButtonClick()">SAVE</button><br/>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+    <input type="text" [(ngModel)]="fName" class="form-control" placeholder="First Name">
+  </div>
+  <br>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+    <input type="text" [(ngModel)]="lName" class="form-control" placeholder="Last Name">
+  </div>
+  <br>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
+    <input type="text" [(ngModel)]="telephone" class="form-control" placeholder="10 digits">
+  </div>
+  <br>
+  <button type="submit" (click)="onButtonClick()" class="btn btn-primary">SAVE</button><br />
   <label>{{status}}</label>
 </div>
-{{fName}}  {{lName}} {{telephone}}
+{{fName}} {{lName}} {{telephone}}
+
+
+<!-- BootStrap Images - Use 
+<img src="125x125.jpg" class="img-rounded" alt="Rounded Image">
+
+-->

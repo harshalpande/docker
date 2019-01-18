@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
+import { Observer, Observable } from 'rxjs';
 
 export interface Person {
   name: String;
@@ -38,14 +39,20 @@ export class AddPersonComponent implements OnInit {
       mobileNo: this.telephone
     };
 
-    let obs = this.httpclient.post(baseURI.toString() + "persons", this.user, { responseType: 'text' });
-    obs.subscribe(
+    this.fetchPersons().subscribe(
       data => {
         this.status = data;
       },
       error => {
-        this.status = error;
+        let errorMessage: String = error.message;
+        this.status = errorMessage;
       });
+  }
+
+  fetchPersons() {
+    let obs: Observable<any>;
+    obs = this.httpclient.post(baseURI.toString() + "persons", this.user, { responseType: 'text' });
+    return obs;
   }
 }
 
