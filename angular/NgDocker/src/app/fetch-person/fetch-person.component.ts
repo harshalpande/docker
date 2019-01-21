@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observable } from 'rxjs';
-import { AddPersonComponent } from '../add-person/add-person.component';
+import { Person } from '../add-person/add-person.component';
 
 @Component({
   selector: 'fetch-person',
@@ -12,6 +12,7 @@ import { AddPersonComponent } from '../add-person/add-person.component';
 export class FetchPersonComponent implements OnInit {
 
   respInJSON: any;
+  status : String;
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +36,25 @@ export class FetchPersonComponent implements OnInit {
     let obs: Observable<any>;
     obs = this.http.get(baseURI + "persons");
     return obs;
+  }
+
+  onDeleteClick(user : String) {
+    let obs: Observable<any>;
+    let userToDelete: HttpParams = new HttpParams();
+    userToDelete = userToDelete.append('key', user.toString());
+       
+    obs = this.http.delete(baseURI + "persons", {params : userToDelete});
+    obs.subscribe(
+      data => {
+        this.status = data;
+        var index = this.respInJSON.indexOf(user, 0);
+        if (index > -1) {
+          this.respInJSON.splice(index, 1)
+        }
+      }, 
+      error => {
+        this.status = error;
+      }
+    )
   }
 }

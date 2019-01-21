@@ -1,1 +1,4 @@
-<div class = "well" *ngFor = "let user of respInJSON"><p class="text-uppercase">{{user.name}}</p> || {{user.surname}} || {{user.mobileNo}}</div>
+<div class="well" *ngFor="let user of respInJSON">
+    <p class="text-uppercase">{{user.name}}</p> || {{user.surname}} || {{user.mobileNo}} || {{user.description}}
+    <button type="submit" (click)="onDeleteClick(user.name)" class="btn btn-primary">DELETE</button><br />
+</div>

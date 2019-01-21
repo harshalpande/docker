@@ -17,6 +17,15 @@ public class PersonDetails {
 	@Column(name = "TELEPHONE")
 	private String mobileNo;
 	
+	@Column(name = "DESCRIPTION")
+	private String description;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getName() {
 		return name;
 	}

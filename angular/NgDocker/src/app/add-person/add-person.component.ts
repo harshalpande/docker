@@ -7,6 +7,7 @@ export interface Person {
   name: String;
   surname: String;
   mobileNo: String;
+  description: String;
 }
 
 @Component({
@@ -19,6 +20,7 @@ export class AddPersonComponent implements OnInit {
   fName: String;
   lName: String;
   telephone: String;
+  desc: String;
 
   status: String;
   user: Person;
@@ -36,7 +38,8 @@ export class AddPersonComponent implements OnInit {
     this.user = {
       name: this.fName,
       surname: this.lName,
-      mobileNo: this.telephone
+      mobileNo: this.telephone,
+      description: this.desc
     };
 
     this.fetchPersons().subscribe(

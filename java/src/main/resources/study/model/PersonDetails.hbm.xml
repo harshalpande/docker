@@ -18,6 +18,8 @@
 			type="java.lang.String" />
 		<property name="mobileNo" column="telephone"
 			type="java.lang.String" length="10" />
+		<property name="description" column="description"
+			type="java.lang.String" />
 
 	</class>
 </hibernate-mapping>

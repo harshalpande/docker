@@ -14,13 +14,12 @@
     <input type="text" [(ngModel)]="telephone" class="form-control" placeholder="10 digits">
   </div>
   <br>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+    <textarea rows="2" [(ngModel)]="desc" class="form-control" placeholder="Description"></textarea>
+  </div>
+  <br>
   <button type="submit" (click)="onButtonClick()" class="btn btn-primary">SAVE</button><br />
   <label>{{status}}</label>
 </div>
-{{fName}} {{lName}} {{telephone}}
-
-
-<!-- BootStrap Images - Use 
-<img src="125x125.jpg" class="img-rounded" alt="Rounded Image">
-
--->
+{{fName}} {{lName}} {{telephone}} {{desc}}

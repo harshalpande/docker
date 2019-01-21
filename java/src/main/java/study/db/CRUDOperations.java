@@ -55,7 +55,8 @@ public class CRUDOperations {
 		try {
 			transaction = session.beginTransaction();
 			// do some work
-			session.delete("PersonDetails", user);
+			PersonDetails person = session.load(PersonDetails.class, user);
+			session.delete(person);
 
 			transaction.commit();
 		} catch (Exception e) {
