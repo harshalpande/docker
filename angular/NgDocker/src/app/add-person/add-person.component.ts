@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observer, Observable } from 'rxjs';
+import { FetchPersonComponent } from '../fetch-person/fetch-person.component';
 
 export interface Person {
   name: String;
@@ -11,6 +12,7 @@ export interface Person {
 }
 
 @Component({
+  providers: [FetchPersonComponent],
   selector: 'add-person',
   templateUrl: './add-person.component.html',
   styleUrls: ['./add-person.component.css']
@@ -25,7 +27,7 @@ export class AddPersonComponent implements OnInit {
   status: String;
   user: Person;
 
-  constructor(private httpclient: HttpClient) {
+  constructor(private httpclient: HttpClient, private fetchComp: FetchPersonComponent) {
 
   }
 
@@ -50,7 +52,10 @@ export class AddPersonComponent implements OnInit {
         let errorMessage: String = error.message;
         this.status = errorMessage;
       });
+
+    this.fetchComp.refreshComponent();
   }
+
 
   fetchPersons() {
     let obs: Observable<any>;

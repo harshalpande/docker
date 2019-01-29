@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observable } from 'rxjs';
-import { Person } from '../add-person/add-person.component';
+
 
 @Component({
   selector: 'fetch-person',
@@ -30,6 +30,7 @@ export class FetchPersonComponent implements OnInit {
         this.respInJSON = error.message;
       }
     );
+    
   }
 
   fetchPerson() {
@@ -56,5 +57,11 @@ export class FetchPersonComponent implements OnInit {
         this.status = error;
       }
     )
+    this.refreshComponent();
   }
+
+  refreshComponent() {
+    window.location.reload();
+  }
+  
 }
