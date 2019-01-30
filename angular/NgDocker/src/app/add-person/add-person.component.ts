@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
-import { Observer, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FetchPersonComponent } from '../fetch-person/fetch-person.component';
+import { FetchService } from '../fetch.service';
+import { DataService } from '../data.service';
 
 export interface Person {
   name: String;
@@ -27,15 +29,26 @@ export class AddPersonComponent implements OnInit {
   status: String;
   user: Person;
 
-  constructor(private httpclient: HttpClient, private fetchComp: FetchPersonComponent) {
+  responseString : any;
+
+  constructor(private httpclient: HttpClient, private fetchService : FetchService, private data : DataService) {
 
   }
 
   ngOnInit() {
-
+    // Do not need Current Message here
+    //this.data.currentMessage.subscribe(message => this.responseString = message);
   }
 
-  onButtonClick() {
+  onButtonClear() {
+    this.fName = '';
+    this.lName = '';
+    this.telephone = '';
+    this.desc = '';
+    this.status = '';
+  }
+
+  onButtonSave() {
 
     this.user = {
       name: this.fName,
@@ -44,20 +57,33 @@ export class AddPersonComponent implements OnInit {
       description: this.desc
     };
 
-    this.fetchPersons().subscribe(
-      data => {
-        this.status = data;
-      },
-      error => {
-        let errorMessage: String = error.message;
-        this.status = errorMessage;
-      });
-
-    this.fetchComp.refreshComponent();
+      this.addPerson();     
   }
 
+  fetchData() {
+    this.fetchService.fetchPerson().subscribe(
+        data => {
+          this.data.changeMessage(data);
+        },
+        error => {
+          console.log(error.message())
+        }
+      );
+    }
 
-  fetchPersons() {
+    addPerson() {
+      this.addPersons().subscribe(
+        data => {
+          this.status = data;
+          this.fetchData();
+        },
+        error => {
+          let errorMessage: String = error.message;
+          this.status = errorMessage;
+        });
+    }
+
+  addPersons() {
     let obs: Observable<any>;
     obs = this.httpclient.post(baseURI.toString() + "persons", this.user, { responseType: 'text' });
     return obs;

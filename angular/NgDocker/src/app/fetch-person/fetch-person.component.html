@@ -1,14 +1,12 @@
-<div *ngFor="let user of respInJSON">
+<div *ngFor="let user of respInJSON; let idx = index">
     <mat-card>
         <mat-card-header>{{user.name | uppercase}} {{user.surname | uppercase}}</mat-card-header>
-        <mat-card-content><p>{{user.description}}</p></mat-card-content>
-        <mat-card-actions>{{user.mobileNo}}
-                <button type="submit" (click)="onDeleteClick(user.name)" class="btn btn-primary">DELETE</button>
+        <mat-card-content>
+            <p>{{user.description}}</p>
+            <p>{{user.mobileNo}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+                <button type="submit" (click)="onDeleteClick(user.name, idx)" class="btn btn-primary">DELETE</button>
         </mat-card-actions>
     </mat-card>
-</div>
-
-<div class="well" *ngFor="let user of respInJSON">
-    <p class="text-uppercase">{{user.name}}</p> || {{user.surname}} || {{user.mobileNo}} || {{user.description}}
-    <button type="submit" (click)="onDeleteClick(user.name)" class="btn btn-primary">DELETE</button><br />
 </div>

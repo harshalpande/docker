@@ -1,45 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observable } from 'rxjs';
-
+import { FetchService } from '../fetch.service';
+import { DataService } from '../data.service';
 
 @Component({
+  providers: [FetchService],
   selector: 'fetch-person',
   templateUrl: './fetch-person.component.html',
   styleUrls: ['./fetch-person.component.css']
 })
 export class FetchPersonComponent implements OnInit {
 
-  respInJSON: any;
+  respInJSON : any;
+  
   status : String;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private data : DataService, private fetchService : FetchService) { 
+      
+  }
 
   ngOnInit() {
-    this.fetchList();
+    this.respInJSON = this.data.currentMessage.subscribe(message => this.respInJSON = message);
+    if (this.respInJSON) {
+      this.fetchService.fetchPerson().subscribe(
+        data => {
+          this.data.changeMessage(data);
+        },
+        error => {
+          console.log(error.message())
+        }
+      );
+    }
   }
 
-  fetchList() {
-
-    this.fetchPerson().subscribe(
-      data => {
-        this.respInJSON = data;
-      },
-      error => {
-        this.respInJSON = error.message;
-      }
-    );
-    
-  }
-
-  fetchPerson() {
-    let obs: Observable<any>;
-    obs = this.http.get(baseURI + "persons");
-    return obs;
-  }
-
-  onDeleteClick(user : String) {
+  onDeleteClick(user : String, idx : number) {
     let obs: Observable<any>;
     let userToDelete: HttpParams = new HttpParams();
     userToDelete = userToDelete.append('key', user.toString());
@@ -48,20 +44,11 @@ export class FetchPersonComponent implements OnInit {
     obs.subscribe(
       data => {
         this.status = data;
-        var index = this.respInJSON.indexOf(user, 0);
-        if (index > -1) {
-          this.respInJSON.splice(index, 1)
-        }
       }, 
       error => {
         this.status = error;
       }
     )
-    this.refreshComponent();
+    this.respInJSON.splice(idx, 1);
   }
-
-  refreshComponent() {
-    window.location.reload();
-  }
-  
 }
