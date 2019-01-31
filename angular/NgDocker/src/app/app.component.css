@@ -13,4 +13,10 @@
     clear: both;
 }
 
+p {
+    text-align: center;
+    background-color:  #e6ffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
 

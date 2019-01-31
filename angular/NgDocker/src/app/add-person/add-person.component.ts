@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observable } from 'rxjs';
-import { FetchPersonComponent } from '../fetch-person/fetch-person.component';
 import { FetchService } from '../fetch.service';
 import { DataService } from '../data.service';
+import { MessageService } from 'primeng/api';
 
 export interface Person {
   name: String;
@@ -14,7 +14,7 @@ export interface Person {
 }
 
 @Component({
-  providers: [FetchPersonComponent],
+  providers:[MessageService],
   selector: 'add-person',
   templateUrl: './add-person.component.html',
   styleUrls: ['./add-person.component.css']
@@ -31,7 +31,10 @@ export class AddPersonComponent implements OnInit {
 
   responseString : any;
 
-  constructor(private httpclient: HttpClient, private fetchService : FetchService, private data : DataService) {
+  constructor(private httpclient: HttpClient, 
+              private fetchService : FetchService, 
+              private data : DataService,
+              private messageService : MessageService) {
 
   }
 
@@ -74,7 +77,7 @@ export class AddPersonComponent implements OnInit {
     addPerson() {
       this.addPersons().subscribe(
         data => {
-          this.status = data;
+          this.callStatusMessage(data);
           this.fetchData();
         },
         error => {
@@ -82,6 +85,13 @@ export class AddPersonComponent implements OnInit {
           this.status = errorMessage;
         });
     }
+
+
+  callStatusMessage(data : any) {
+
+    this.messageService.add({severity:'success', summary:'Docker Message', detail: data});
+
+  }
 
   addPersons() {
     let obs: Observable<any>;

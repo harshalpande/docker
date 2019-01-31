@@ -1,3 +1,48 @@
 mat-card {
-    width: 250px;
+    width: 200px;
+    height: 235px;
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 18px;
+    margin-left: 18px;
+}
+.header {
+    position: absolute;
+    top: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 170px;
+    text-align: center; 
+    color: #007acc;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 170px;
+}
+
+.delete-icon {
+    color: red;
+    float: left;
+}
+
+strong {
+    font-weight: 300;
+    float: right;
+    font-family: "Verdana";
+    font-size: 10px;
+}
+mat-card-actions {
+    position:absolute;
+    bottom:0;
+}
+
+p {
+    word-wrap: break-word;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #8c8c8c;
+}
+
+.scrollable-div {
+    max-height: 500px;
+    overflow-y: scroll;
 }

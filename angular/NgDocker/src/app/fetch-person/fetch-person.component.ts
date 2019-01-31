@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { baseURI } from '../ApplicationConst';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { DataService } from '../data.service';
 export class FetchPersonComponent implements OnInit {
 
   respInJSON : any;
-  
+  subscribedMessage : any;
   status : String;
 
   constructor(private http: HttpClient, private data : DataService, private fetchService : FetchService) { 
@@ -22,7 +22,8 @@ export class FetchPersonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.respInJSON = this.data.currentMessage.subscribe(message => this.respInJSON = message);
+    this.subscribedMessage = this.data.currentMessage.subscribe(message => this.respInJSON = message);
+    this.respInJSON = this.subscribedMessage;
     if (this.respInJSON) {
       this.fetchService.fetchPerson().subscribe(
         data => {

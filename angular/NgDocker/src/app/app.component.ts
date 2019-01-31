@@ -10,9 +10,6 @@ import { FetchService } from './fetch.service';
 export class AppComponent {
   title = 'NgDocker';
 
-  status : String;
-
-  constructor() { }
-
- }
+  constructor() {}
+}
 

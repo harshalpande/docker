@@ -1,12 +1,19 @@
+<div class="scrollable-div">
 <div *ngFor="let user of respInJSON; let idx = index">
     <mat-card>
-        <mat-card-header>{{user.name | uppercase}} {{user.surname | uppercase}}</mat-card-header>
+        <div class="header">
+            {{user.name | uppercase}} {{user.surname | uppercase}}
+        </div>
+        <br>
         <mat-card-content>
             <p>{{user.description}}</p>
-            <p>{{user.mobileNo}}</p>
         </mat-card-content>
-        <mat-card-actions>
-                <button type="submit" (click)="onDeleteClick(user.name, idx)" class="btn btn-primary">DELETE</button>
-        </mat-card-actions>
+        <br>
+        <div class="footer">
+            <div class="delete-icon"><span class="glyphicon glyphicon-folder-close" (click)="onDeleteClick(user.name, idx)"></span></div>
+            <strong><span class="glyphicon glyphicon-phone-alt" ></span> :{{user.mobileNo}}</strong>
+            <br>
+        </div>
     </mat-card>
+</div>
 </div>
