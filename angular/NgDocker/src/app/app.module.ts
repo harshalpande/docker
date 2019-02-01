@@ -8,7 +8,7 @@ import { FetchPersonComponent } from './fetch-person/fetch-person.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast'; 
-import { StatusService } from './status.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { StatusService } from './status.service';
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, MatCardModule, HttpClientModule, ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

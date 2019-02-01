@@ -1,19 +1,20 @@
 <div class="scrollable-div">
-<div *ngFor="let user of respInJSON; let idx = index">
-    <mat-card>
-        <div class="header">
-            {{user.name | uppercase}} {{user.surname | uppercase}}
-        </div>
-        <br>
-        <mat-card-content>
-            <p>{{user.description}}</p>
-        </mat-card-content>
-        <br>
-        <div class="footer">
-            <div class="delete-icon"><span class="glyphicon glyphicon-folder-close" (click)="onDeleteClick(user.name, idx)"></span></div>
-            <strong><span class="glyphicon glyphicon-phone-alt" ></span> :{{user.mobileNo}}</strong>
+    <div *ngFor="let user of subscribedMessage | async; let idx = index">
+        <mat-card>
+            <div class="header">
+                {{user.name | uppercase}} {{user.surname | uppercase}}
+            </div>
             <br>
-        </div>
-    </mat-card>
+            <mat-card-content>
+                <p>{{user.description}}</p>
+            </mat-card-content>
+            <br>
+            <div class="footer">
+                <div class="delete-icon"><span class="glyphicon glyphicon-folder-close" (click)="deleteMessage(user.name, idx)"></span></div>
+                <strong><span class="glyphicon glyphicon-phone-alt"></span> :{{user.mobileNo}}</strong>
+                <br>
+            </div>
+        </mat-card>
+    </div>
 </div>
-</div>
+<p-toast></p-toast>

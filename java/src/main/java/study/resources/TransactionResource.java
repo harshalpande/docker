@@ -1,5 +1,6 @@
 package study.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.Response.Status;
 
 import study.db.CRUDOperations;
 import study.model.PersonDetails;
+import study.operations.JSONSerializationEngine;
 import study.operations.StringJSON;
 
 @Path("persons")
@@ -44,7 +46,9 @@ public class TransactionResource {
 	@DELETE
 	public Response deletePerson(@QueryParam("key") String personName) {
 		crud.deletePerson(personName);
-		return Response.status(Status.OK).entity(personName + " Deleted!!!").build();
+		List<String> arrayList = new ArrayList<>();
+		arrayList.add(personName + " Deleted!!!");
+		return Response.status(Status.OK).entity(new JSONSerializationEngine().objectToString(arrayList)).build();
 	}
 
 }
