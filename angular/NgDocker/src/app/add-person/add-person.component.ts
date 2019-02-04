@@ -14,7 +14,7 @@ export interface Person {
 }
 
 @Component({
-  providers:[MessageService],
+  providers: [MessageService],
   selector: 'add-person',
   templateUrl: './add-person.component.html',
   styleUrls: ['./add-person.component.css']
@@ -29,12 +29,12 @@ export class AddPersonComponent implements OnInit {
   status: String;
   user: Person;
 
-  responseString : any;
+  responseString: any;
 
-  constructor(private httpclient: HttpClient, 
-              private fetchService : FetchService, 
-              private data : DataService,
-              private messageService : MessageService) {
+  constructor(private httpclient: HttpClient,
+    private fetchService: FetchService,
+    private data: DataService,
+    private messageService: MessageService) {
 
   }
 
@@ -60,36 +60,36 @@ export class AddPersonComponent implements OnInit {
       description: this.desc
     };
 
-      this.addPerson();     
+    this.addPerson();
   }
 
   fetchData() {
     this.fetchService.fetchPerson().subscribe(
-        data => {
-          this.data.changeMessage(data);
-        },
-        error => {
-          console.log(error.message())
-        }
-      );
-    }
+      data => {
+        this.data.changeMessage(data);
+      },
+      error => {
+        console.log(error.message())
+      }
+    );
+  }
 
-    addPerson() {
-      this.addPersons().subscribe(
-        data => {
-          this.callStatusMessage(data);
-          this.fetchData();
-        },
-        error => {
-          let errorMessage: String = error.message;
-          this.status = errorMessage;
-        });
-    }
+  addPerson() {
+    this.addPersons().subscribe(
+      data => {
+        this.callStatusMessage(data);
+        this.fetchData();
+      },
+      error => {
+        let errorMessage: String = error.message;
+        this.status = errorMessage;
+      });
+  }
 
 
-  callStatusMessage(data : any) {
+  callStatusMessage(data: any) {
 
-    this.messageService.add({severity:'success', summary:'Docker Message', detail: data});
+    this.messageService.add({ severity: 'success', summary: 'Docker Message', detail: data });
 
   }
 

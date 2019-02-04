@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FetchService } from './fetch.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DeleteService } from './delete.service';
 import { MessageService } from 'primeng/api';
 
@@ -11,8 +11,9 @@ export class DataService {
 
   private messageSource = new BehaviorSubject<any>('');
 
-
-  constructor(private fetchService: FetchService, private deleteService: DeleteService, private messageService: MessageService) { }
+  constructor(private fetchService: FetchService, 
+              private deleteService: DeleteService, 
+              private messageService: MessageService) { }
 
   changeMessage(newResponse: any) {
     this.messageSource.next(newResponse);
@@ -48,7 +49,6 @@ export class DataService {
         console.log("The DELETE observable is now completed.");
       }
     )
-    this.respInJSON.splice(idx, 1);
   }
 
   callStatusMessage(data: any) {

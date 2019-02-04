@@ -22,10 +22,11 @@ export class FetchPersonComponent implements OnInit {
      this.data.getMessages();
   }
 
-  onDeleteClick( user : String, idx: number) {
-    
-    
+  deleteMessage( user : String, idx: number) {
     this.data.deleteMessage(user, idx);
+    this.subscribedMessage.forEach(next => {
+      next.splice(idx, 1);
+    })
   }
 
   callStatusMessage(data : any) {
