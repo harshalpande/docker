@@ -61,6 +61,7 @@ export class AddPersonComponent implements OnInit {
     };
 
     this.addPerson();
+    this.onButtonClear();
   }
 
   fetchData() {

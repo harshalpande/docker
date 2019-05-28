@@ -47,6 +47,22 @@ export class DataService {
       },
       () => {
         console.log("The DELETE observable is now completed.");
+        console.log("Fetching Again");
+        this.fetchServiceCall();
+      }
+    )
+  }
+
+  fetchServiceCall() {
+    this.fetchService.fetchPerson().subscribe(
+      data => {
+        this.changeMessage(data);
+      }, 
+      error => {
+        console.log(error.message());
+      },
+      () => {
+        console.log("Fetch Service is completed.")
       }
     )
   }

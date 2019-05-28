@@ -1,5 +1,5 @@
 <div class="scrollable-div">
-    <div *ngFor="let user of subscribedMessage | async; let idx = index">
+    <div *ngFor="let user of subscribedMessage|async; let idx = index">
         <mat-card>
             <div class="header">
                 {{user.name | uppercase}} {{user.surname | uppercase}}
